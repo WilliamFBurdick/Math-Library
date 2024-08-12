@@ -24,9 +24,17 @@ namespace Math
 		Vector2 operator/(const float& rhs) const;
 		void operator/=(const float& rhs);
 
+		// Dot products
+		static float Dot(const Vector2& lhs, const Vector2& rhs);
+		float Dot(const Vector2& rhs) const;
+
 		// Magnitude
 		float Length() const;
 		float LengthSquared() const;
+
+		// Normalizing
+		void Normalize();
+		Vector2 Normalized() const;
 	};
 }
 

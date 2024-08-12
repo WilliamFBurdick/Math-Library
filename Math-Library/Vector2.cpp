@@ -69,6 +69,16 @@ void Vector2::operator/=(const float& rhs)
     y /= rhs;
 }
 
+float Math::Vector2::Dot(const Vector2& lhs, const Vector2& rhs)
+{
+    return lhs.x * rhs.x + lhs.y * rhs.y;
+}
+
+float Math::Vector2::Dot(const Vector2& rhs) const
+{
+    return x * rhs.x + y * rhs.y;
+}
+
 float Math::Vector2::Length() const
 {
     return std::sqrt(x * x + y * y);
@@ -77,4 +87,27 @@ float Math::Vector2::Length() const
 float Math::Vector2::LengthSquared() const
 {
     return x * x + y * y;
+}
+
+void Math::Vector2::Normalize()
+{
+    float length = Length();
+    if (length > 0)
+    {
+        x /= length;
+        y /= length;
+    }
+}
+
+Vector2 Math::Vector2::Normalized() const
+{
+    float length = Length();
+    if (length > 0)
+    {
+        return Vector2(x / length, y / length);
+    }
+    else
+    {
+        return Vector2();
+    }
 }

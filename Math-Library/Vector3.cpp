@@ -1,6 +1,8 @@
 #include "Vector3.h"
 #include <cmath>
 
+using namespace Math;
+
 Vector3::Vector3():
 	x(0.f), y(0.f), z(0.f)
 {

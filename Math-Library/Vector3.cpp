@@ -1,7 +1,16 @@
-#include "Vector3.h"
-#include <cmath>
+#include "Math.h"
 
 using namespace Math;
+
+const Vector3 Vector3::Zero(0.f, 0.f, 0.f);
+const Vector3 Vector3::UnitX(1.f, 0.f, 0.f);
+const Vector3 Vector3::UnitY(0.f, 1.f, 0.f);
+const Vector3 Vector3::UnitZ(0.f, 0.f, 1.f);
+const Vector3 Vector3::NegUnitX(-1.f, 0.f, 0.f);
+const Vector3 Vector3::NegUnitY(0.f, -1.f, 0.f);
+const Vector3 Vector3::NegUnitZ(0.f, 0.f, -1.f);
+const Vector3 Vector3::Infinity(Math::Infinity, Math::Infinity, Math::Infinity);
+const Vector3 Vector3::NegInfinity(Math::NegativeInfinity, Math::NegativeInfinity, Math::NegativeInfinity);
 
 Vector3::Vector3():
 	x(0.f), y(0.f), z(0.f)
@@ -139,4 +148,24 @@ Vector3 Vector3::Normalized() const
 	{
 		return Vector3();
 	}
+}
+
+Vector3 Math::Vector3::Lerp(const Vector3& target, float step)
+{
+	return Vector3(*this + ((target - *this) * step));
+}
+
+Vector3 Math::Vector3::Lerp(const Vector3& vector, const Vector3& target, float step)
+{
+	return Vector3(vector + ((target - vector) * step));
+}
+
+Vector3 Math::Vector3::Reflect(const Vector3& normal)
+{
+	return Vector3(*this - normal * this->Dot(normal) * 2.0f);
+}
+
+Vector3 Math::Vector3::Reflect(const Vector3& vector, const Vector3& normal)
+{
+	return Vector3(vector - normal * vector.Dot(normal) * 2.0f);
 }

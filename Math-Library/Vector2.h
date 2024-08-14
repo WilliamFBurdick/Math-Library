@@ -35,6 +35,21 @@ namespace Math
 		// Normalizing
 		void Normalize();
 		Vector2 Normalized() const;
+
+		// Reflect
+		static Vector2 Reflect(const Vector2& a, const Vector2& b);
+		Vector2 Reflect(const Vector2& b);
+
+		// Translate
+		static Vector2 Transform(const Vector2& v, const class Matrix3& mat, float w = 1.f);
+		Vector2 Transform(const class Matrix3& mat, float w = 1.f);
+
+		// Constants
+		static const Vector2 Zero;
+		static const Vector2 UnitX;
+		static const Vector2 UnitY;
+		static const Vector2 NegUnitX;
+		static const Vector2 NegUnitY;
 	};
 }
 

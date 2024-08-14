@@ -1,7 +1,14 @@
-#include "Matrix3.h"
+#include "Math.h"
 #include <cstdio>
 
 using namespace Math;
+
+static float matrix3Identity[3][3] = {
+	{1.f, 0.f, 0.f},
+	{0.f, 1.f, 0.f},
+	{0.f, 0.f, 1.f}
+};
+const Matrix3 Matrix3::Identity(matrix3Identity);
 
 Matrix3::Matrix3()
 {
@@ -24,7 +31,7 @@ Matrix3::Matrix3(float values[3][3])
 			matrix[i][j] = values[i][j];
 }
 
-void Math::Matrix3::Print()
+void Matrix3::Print()
 {
 	printf("[%f,%f,%f\n%f,%f,%f\n%f,%f,%f]\n", 
 		matrix[0][0], matrix[0][1], matrix[0][2], 
@@ -68,7 +75,7 @@ void Matrix3::operator*=(const float& rhs)
 			matrix[i][j] *= rhs;
 }
 
-Matrix3 Math::Matrix3::operator*(const Matrix3& rhs) const
+Matrix3 Matrix3::operator*(const Matrix3& rhs) const
 {
 	Matrix3 retVal;
 	// Row 1
@@ -108,12 +115,43 @@ void Matrix3::operator*=(const Matrix3& rhs)
 			matrix[i][j] = retVal.matrix[i][j];
 }
 
-Matrix3 Math::Matrix3::Identity()
+Matrix3 Matrix3::Scale(float xScale, float yScale)
 {
-	Matrix3 retVal;
-	retVal.matrix[0][0] = 1;
-	retVal.matrix[1][1] = 1;
-	retVal.matrix[2][2] = 1;
-	return retVal;
+	float temp[3][3] = {
+		{xScale, 0.f, 0.f},
+		{0.f, yScale, 0.f},
+		{0.f, 0.f, 1.f}
+	};
+	return Matrix3(temp);
+}
+
+Matrix3 Matrix3::Scale(const Vector2& scaleVector)
+{
+	return Scale(scaleVector.x, scaleVector.y);
+}
+
+Matrix3 Matrix3::Scale(float scale)
+{
+	return Scale(scale, scale);
+}
+
+Matrix3 Matrix3::Rotation(float theta)
+{
+	float temp[3][3] = {
+		{Math::Cos(theta), Math::Sin(theta), 0.f},
+		{-Math::Sin(theta), Math::Cos(theta), 0.f},
+		{0.f, 0.f, 1.f}
+	};
+	return Matrix3(temp);
+}
+
+Matrix3 Matrix3::Translation(const Vector2& translation)
+{
+	float temp[3][3] = {
+		{1.f, 0.f, 0.f},
+		{0.f, 1.f, 0.f},
+		{translation.x, translation.y, 1.f}
+	};
+	return Matrix3(temp);
 }
 

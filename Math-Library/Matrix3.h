@@ -2,6 +2,9 @@
 
 namespace Math
 {
+	// Forward declaration
+	class Vector2;
+
 	class Matrix3
 	{
 	private:
@@ -13,6 +16,9 @@ namespace Math
 		Matrix3(const Matrix3& inMatrix);
 		Matrix3(float values[3][3]);
 		Matrix3& operator=(const Matrix3& rhs);
+
+		// Getters
+		const float* GetFloatArray() const;
 
 		// Debugging
 		void Print();
@@ -26,9 +32,14 @@ namespace Math
 		void operator*= (const Matrix3& rhs);
 
 		// Matrix operations
-		static Matrix3 Identity();
-		static Matrix3 Inverse(const Matrix3& value);
-		static Matrix3 Transpose(const Matrix3& value);
+		static Matrix3 Scale(float xScale, float yScale);
+		static Matrix3 Scale(const Vector2& scaleVector);
+		static Matrix3 Scale(float scale);
+		static Matrix3 Rotation(float theta);
+		static Matrix3 Translation(const Vector2& translation);
+
+		// Constants
+		static const Matrix3 Identity;
 	};
 }
 

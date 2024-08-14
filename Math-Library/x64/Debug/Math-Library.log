@@ -1,0 +1,7 @@
+﻿  Matrix3.cpp
+  Matrix4.cpp
+  Quaternion.cpp
+  Vector2.cpp
+  Vector3.cpp
+  Generating Code...
+  Math-Library.vcxproj -> C:\Users\Wburdick\source\repos\Math-Library\x64\Debug\Math-Library.lib
